@@ -16,7 +16,7 @@ public class Render {
     }
 
     public static void begin(Shader shader) {
-        glClearColor(0f, 0f, 0f, 1f);
+        glClearColor(0.1f, 0.1f, 0.1f, 1f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.bind();

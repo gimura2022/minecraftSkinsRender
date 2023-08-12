@@ -1,5 +1,6 @@
 package org.main.engine;
 
+import org.joml.Random;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import org.main.engine.input.Keyboard;
@@ -7,6 +8,7 @@ import org.main.engine.object.GameObject;
 import org.main.engine.render.*;
 import org.main.engine.render.VertexAttribute.ShaderDataType;
 import org.main.engine.util.ImageSaver;
+import org.main.engine.util.PoseReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +44,8 @@ public class Game {
     }
 
     private void update() {
+        Random random = new Random();
+
         float objectR = 0.7f;
         float objectG = 0.7f;
         float objectB = 0.7f;
@@ -101,6 +105,8 @@ public class Game {
            -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
         };
 
+//        float[] vertex = PoseReader.readPoseInFile("\\assets\\poses\\pose_0.obj");
+
         logger.trace("Create vao and vbo");
         VertexArrayObject vertexArrayObject = new VertexArrayObject();
         VertexBufferObject vertexBufferObject = new VertexBufferObject(vertex);
@@ -116,13 +122,13 @@ public class Game {
 
         GameObject gameObject = new GameObject(
                 new Vector3f(0, 0, 0), // Position
-                new Vector3f(0.5f, -0.5f, 0), // Rotation
+                new Vector3f(0.3f, -0.3f, 0), // Rotation
                 new Vector3f(1, 1, 1)  // Scale
         );
 
         gameObject.setModel(vertexArrayObject);
 
-        float speed = 0.02f;
+        float speed = 0.2f;
 
         logger.debug("Demo mode: " + DEMO);
         while (!window.isCloseRequest() && DEMO) {
@@ -139,7 +145,8 @@ public class Game {
             Render.begin(shader);
 
             shader.setUniform("u_view_mode", viewMode);
-            shader.setUniform("u_light_position", 0.7f, 0.7f, 0.3f);
+
+            shader.setUniform("u_light_position", 0.7f, 0.3f, 0.8f);
             shader.setUniform("u_light_color", 1f, 1f, 1f, 1f);
 
             Render.renderGameObject(gameObject, shader);

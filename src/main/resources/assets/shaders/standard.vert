@@ -12,7 +12,7 @@ uniform mat4 u_modelMatrix;
 
 void main() {
     color = attrib_color;
-    normal = attrib_normal;
+    normal = vec3(u_modelMatrix * vec4(attrib_normal, 1.0f));
     fragPos = vec3(u_modelMatrix * vec4(attrib_position, 1.0f));
 
     gl_Position = u_modelMatrix * vec4(attrib_position, 1.0f);
