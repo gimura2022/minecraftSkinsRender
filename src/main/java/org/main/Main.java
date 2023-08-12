@@ -4,7 +4,6 @@ import org.main.engine.Game;
 import org.main.engine.util.NamePrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.event.Level;
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
