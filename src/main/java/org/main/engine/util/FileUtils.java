@@ -1,9 +1,17 @@
 package org.main.engine.util;
 
+import org.main.engine.Game;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 
 public class FileUtils {
+    private static final Logger logger = LoggerFactory.getLogger(FileUtils.class);
+
     public static String readFile(String file) {
+        logger.debug("Reading file: " + file);
+
         boolean appendSlashes = false;
         boolean returnInOneLine = false;
 
@@ -25,7 +33,7 @@ public class FileUtils {
 
             return shaderSource.toString();
         } catch(IOException e) {
-            System.err.println("Unable to read file!");
+            logger.error("Unable to read file!");
             System.exit(-1);
         }
 
@@ -33,19 +41,27 @@ public class FileUtils {
     }
 
     public static void writeFile(String path, String file) {
+        logger.debug("Write file: " + path);
+
         try (FileWriter fileWriter = new FileWriter(path, false)) {
             fileWriter.write(file);
             fileWriter.flush();
         } catch (IOException e) {
-            System.err.println("Unable to write file!");
+            logger.error("Unable to write file!");
             System.exit(-1);
         }
     }
 
     private static InputStream getFileFromResourceAsStream(String fileName) {
+        logger.debug("Reading file as stream: " + fileName);
+
         ClassLoader classLoader = FileUtils.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
 
-        if (inputStream == null) { throw new IllegalArgumentException("file not found! " + fileName); } else { return inputStream; }
+        if (inputStream == null) {
+            logger.error("Unable to read file!");
+            System.exit(-1);
+        }
+        return inputStream;
     }
 }

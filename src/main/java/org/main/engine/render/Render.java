@@ -2,10 +2,14 @@ package org.main.engine.render;
 
 import org.main.engine.Game;
 import org.main.engine.object.GameObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.lwjgl.opengl.GL46C.*;
 
 public class Render {
+    private static final Logger logger = LoggerFactory.getLogger(Render.class);
+
     public static void init() {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -31,7 +35,7 @@ public class Render {
 
             shader.unBind();
             gameObject.getVertexArrayObject().unBind();
-        }
+        } else { logger.warn("Vao object is null!"); }
     }
 
     public static void destroy() { glDisable(GL_BLEND); }

@@ -9,6 +9,9 @@ project.ext.lwjglVersion = "3.3.2"
 project.ext.jomlVersion = "1.10.5"
 project.ext.lwjglNatives = "natives-windows"
 
+project.ext.log4jVersion = "2.20.0"
+project.ext.slf4jVersion = "2.0.7"
+
 repositories {
     mavenCentral()
 }
@@ -32,6 +35,12 @@ dependencies {
     runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
     implementation "org.joml:joml:${jomlVersion}"
+
+//    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+//    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: "${slf4jVersion}"
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
 }
 
 jar {

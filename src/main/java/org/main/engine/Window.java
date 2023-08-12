@@ -7,6 +7,8 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryStack;
 import org.main.engine.input.Mouse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.IntBuffer;
 
@@ -24,6 +26,8 @@ public class Window {
 
     public static Window instance;
 
+    private static final Logger logger = LoggerFactory.getLogger(Window.class);
+
     public Window(int height, int width, String title) {
         instance = this;
 
@@ -33,15 +37,21 @@ public class Window {
     }
 
     public void createWindow() {
+        logger.info("Creating window");
+
         if (!GLFW.glfwInit()) {
-            System.err.println("GLFW not installed!");
+            logger.error("GLFW not installed!");
             System.exit(-1);
         }
 
         windowId = GLFW.glfwCreateWindow(width, height, title, 0, 0);
 
+        logger.debug("Window width: " + width);
+        logger.debug("Window height: " + height);
+        logger.debug("Window title: " + title);
+
         if (windowId == 0) {
-            System.err.println("GLFW error to create window!");
+            logger.error("GLFW error to create window!");
             System.exit(-1);
         }
 
@@ -75,7 +85,10 @@ public class Window {
         GLFW.glfwSwapBuffers(windowId);
     }
 
-    public void destroyWindow() { GLFW.glfwDestroyWindow(windowId); }
+    public void destroyWindow() {
+        GLFW.glfwDestroyWindow(windowId);
+        logger.info("Destroying window");
+    }
 
     public boolean isCloseRequest() { return GLFW.glfwWindowShouldClose(windowId); }
 

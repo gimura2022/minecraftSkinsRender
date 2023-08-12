@@ -7,6 +7,8 @@ import org.main.engine.object.GameObject;
 import org.main.engine.render.*;
 import org.main.engine.render.VertexAttribute.ShaderDataType;
 import org.main.engine.util.ImageSaver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Game {
     public static final int HEIGHT = 600;
@@ -14,6 +16,8 @@ public class Game {
     public static final String TITLE = "3d graphics";
 
     public static final boolean DEMO = true;
+
+    private static final Logger logger = LoggerFactory.getLogger(Game.class);
 
     private Shader shader;
 
@@ -27,8 +31,7 @@ public class Game {
     }
 
     private void init() {
-        // Logger logger = Logger.getLogger("MAIN");
-        // logger.setLevel(Level.ALL);
+        logger.trace("Init render");
 
         window = new Window(HEIGHT, WIDTH, TITLE);
         window.createWindow();
@@ -98,9 +101,11 @@ public class Game {
            -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,
         };
 
+        logger.trace("Create vao and vbo");
         VertexArrayObject vertexArrayObject = new VertexArrayObject();
         VertexBufferObject vertexBufferObject = new VertexBufferObject(vertex);
 
+        logger.trace("Adding attributes");
         vertexBufferObject.setBufferLayout(new BufferLayout(
                 new VertexAttribute("attrib_position", ShaderDataType.t_float3),
                 new VertexAttribute("attrib_color", ShaderDataType.t_float4)
@@ -118,6 +123,7 @@ public class Game {
 
         float speed = 0.02f;
 
+        logger.debug("Demo mode: " + DEMO);
         while (!window.isCloseRequest() && DEMO) {
             if (Keyboard.keyPressed(GLFW.GLFW_KEY_M)) { viewMode++; }
             if (viewMode > 1) { viewMode = 0; }
@@ -145,14 +151,18 @@ public class Game {
             catch (InterruptedException e) {}
         }
 
+        logger.info("Rendering");
         Render.begin(shader);
 
+        logger.trace("Transfer of uniforms");
         shader.setUniform("u_view_mode", viewMode);
         shader.setUniform("u_light_position", 0, 0.7f, 0.3f);
         shader.setUniform("u_light_rotation", 0, 0.7f, 0.3f);
 
+        logger.trace("Rendering game object");
         Render.renderGameObject(gameObject, shader);
 
+        logger.trace("End rendering");
         Render.end(shader);
 
         window.updateWindow();
@@ -161,5 +171,7 @@ public class Game {
 
         Render.destroy();
         window.destroyWindow();
+
+        logger.info("Render stopped");
     }
 }
