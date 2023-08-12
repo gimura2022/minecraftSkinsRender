@@ -10,15 +10,11 @@ uniform int u_view_mode;
 uniform vec3 u_light_position;
 uniform vec4 u_light_color;
 
-int rand(int next) {
-    next = next * 1103515245 + 12345;
-    return (next / 65536) % 32768;
-}
-
-vec4 get_color_studio_mode() { return vec4(fragPos, 1); }
+vec4 get_color_debug_mode() { return vec4(fragPos, 1); }
+vec4 get_color_studio_mode() { return color; }
 
 vec4 get_color_ambient_light_mode() {
-    float ambientStrength = 0.24f;
+    float ambientStrength = 0.16f;
     vec4 ambient = ambientStrength * u_light_color;
 
     return color * ambient;
@@ -30,7 +26,7 @@ vec4 get_color_diffuse_light_mode() {
 
     float diff = max(dot(norm, lightDir), 0);
 
-    return u_light_color * diff;
+    return (u_light_color * diff) * 1.6f;
 }
 
 vec4 get_color_light_mode() {
@@ -42,9 +38,10 @@ vec4 get_color_light_mode() {
 
 void main() {
     if (u_view_mode == 0) out_color = get_color_studio_mode();
+    else if (u_view_mode == 1) out_color = get_color_debug_mode();
 
-    else if (u_view_mode == 1) out_color = get_color_ambient_light_mode();
-    else if (u_view_mode == 2) out_color = get_color_diffuse_light_mode();
+    else if (u_view_mode == 2) out_color = get_color_ambient_light_mode();
+    else if (u_view_mode == 3) out_color = get_color_diffuse_light_mode();
 
-    else if (u_view_mode == 3) out_color = get_color_light_mode();
+    else if (u_view_mode == 4) out_color = get_color_light_mode();
 }

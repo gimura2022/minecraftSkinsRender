@@ -128,25 +128,25 @@ public class Game {
 
         gameObject.setModel(vertexArrayObject);
 
-        float speed = 0.2f;
+        float speed = 0.02f;
 
         logger.debug("Demo mode: " + DEMO);
         while (!window.isCloseRequest() && DEMO) {
             if (Keyboard.keyPressed(GLFW.GLFW_KEY_M)) { viewMode++; }
-            if (viewMode > 3) { viewMode = 0; }
+            if (viewMode > 4) { viewMode = 0; }
 
             Keyboard.handelKeyboard();
 //            Mouse.handelMouse();
 
-//            gameObject.getRotation().x += speed;
-//            gameObject.getRotation().y += speed;
-//            gameObject.getRotation().z += speed;
+            gameObject.getRotation().x += speed;
+            gameObject.getRotation().y += speed;
+            gameObject.getRotation().z += speed;
 
             Render.begin(shader);
 
             shader.setUniform("u_view_mode", viewMode);
 
-            shader.setUniform("u_light_position", 0.7f, 0.3f, 0.8f);
+            shader.setUniform("u_light_position", 0.0f, 0.4f, 0.65f);
             shader.setUniform("u_light_color", 1f, 1f, 1f, 1f);
 
             Render.renderGameObject(gameObject, shader);

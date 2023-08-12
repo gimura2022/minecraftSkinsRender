@@ -1,6 +1,8 @@
 package org.main.engine.util;
 
 import org.lwjgl.BufferUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,22 +16,33 @@ import java.nio.channels.FileChannel;
 import static org.lwjgl.system.MemoryStack.*;
 
 public class MemoryManagement {
-    public static ByteBuffer resourceToByteBuffer(final String resource) throws IOException
+    private static final Logger logger = LoggerFactory.getLogger(MemoryManagement.class);
+
+    public static ByteBuffer resourceToByteBuffer(final String resource)
     {
+        logger.debug("Reading file as stream: " + resource);
+
         File file = new File(resource);
 
-        FileInputStream fileInputStream = new FileInputStream(file);
-        FileChannel fileChannel = fileInputStream.getChannel();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            FileChannel fileChannel = fileInputStream.getChannel();
 
-        ByteBuffer buffer = BufferUtils.createByteBuffer((int) fileChannel.size() + 1);
+            ByteBuffer buffer = BufferUtils.createByteBuffer((int) fileChannel.size() + 1);
 
-        while (fileChannel.read(buffer) != -1)
+            while (fileChannel.read(buffer) != -1)
 
-        fileInputStream.close();
-        fileChannel.close();
-        buffer.flip();
+            fileInputStream.close();
+            fileChannel.close();
+            buffer.flip();
 
-        return buffer;
+            return buffer;
+        } catch (IOException e) {
+            logger.error("Unable to read file!");
+            System.exit(-1);
+        }
+
+        return null;
     }
 
     public static IntBuffer putData(int[] data) { return (IntBuffer) stackGet().mallocInt(Integer.BYTES * data.length).put(data).flip(); }
