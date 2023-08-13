@@ -52,7 +52,7 @@ public class FileUtils {
         }
     }
 
-    private static InputStream getFileFromResourceAsStream(String fileName) {
+    public static InputStream getFileFromResourceAsStream(String fileName) {
         logger.debug("Reading file as stream: " + fileName);
 
         ClassLoader classLoader = FileUtils.class.getClassLoader();

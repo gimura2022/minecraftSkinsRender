@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
@@ -20,17 +21,17 @@ public class MemoryManagement {
 
     public static ByteBuffer resourceToByteBuffer(final String resource)
     {
-        logger.debug("Reading file as stream: " + resource);
-
-        File file = new File(resource);
-
         try {
+            File file = new File(resource);
+
             FileInputStream fileInputStream = new FileInputStream(file);
             FileChannel fileChannel = fileInputStream.getChannel();
 
             ByteBuffer buffer = BufferUtils.createByteBuffer((int) fileChannel.size() + 1);
 
-            while (fileChannel.read(buffer) != -1)
+            while (fileChannel.read(buffer) != -1) {
+                ;
+            }
 
             fileInputStream.close();
             fileChannel.close();

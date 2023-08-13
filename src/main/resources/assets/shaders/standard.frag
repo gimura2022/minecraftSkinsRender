@@ -5,16 +5,20 @@ layout (location = 0) out vec4 out_color;
 in vec4 color;
 in vec3 fragPos;
 in vec3 normal;
+in vec2 uv;
 
 uniform int u_view_mode;
 uniform vec3 u_light_position;
 uniform vec4 u_light_color;
+uniform sampler2D u_texture_sampler;
 
 vec4 get_color_debug_mode() { return vec4(fragPos, 1); }
 vec4 get_color_studio_mode() { return color; }
 
+vec4 get_color_texture_mode() { return texture(u_texture_sampler, uv); }
+
 vec4 get_color_ambient_light_mode() {
-    float ambientStrength = 0.16f;
+    float ambientStrength = 0.24f;
     vec4 ambient = ambientStrength * u_light_color;
 
     return color * ambient;
@@ -26,14 +30,27 @@ vec4 get_color_diffuse_light_mode() {
 
     float diff = max(dot(norm, lightDir), 0);
 
-    return (u_light_color * diff) * 1.6f;
+    return (u_light_color * diff) * 1.45;
+}
+
+vec4 get_color_specular_light_mode() {
+    vec3 viewPos = vec3(0, 0, 0);
+    float specularStrength = 0.5f;
+
+    vec3 norm = normalize(normal);
+    vec3 viewDir = normalize(viewPos - fragPos);
+    vec3 reflectDir = reflect(-viewDir, norm);
+
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
+
+    return vec4(specularStrength * spec * u_light_color);
 }
 
 vec4 get_color_light_mode() {
     vec4 result = (get_color_ambient_light_mode() + get_color_diffuse_light_mode()) * color;
 
+//    return vec4(vec3(result), 1);
     return result;
-//    return result;
 }
 
 void main() {

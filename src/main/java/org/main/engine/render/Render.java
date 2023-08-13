@@ -27,13 +27,16 @@ public class Render {
     public static void renderGameObject(GameObject gameObject, Shader shader) {
         if (gameObject.getVertexArrayObject() != null) {
             gameObject.getVertexArrayObject().bind();
+//            gameObject.getTexture().bind();
             shader.bind();
 
             shader.setUniform("u_modelMatrix", gameObject.getModelMatrix());
+            shader.setUniform("u_texture_sampler", 0);
 
             glDrawArrays(GL_TRIANGLES, 0, gameObject.getVertexArrayObject().getVbos().get(0).getData().length / 3);
 
             shader.unBind();
+//            gameObject.getTexture().unBind();
             gameObject.getVertexArrayObject().unBind();
         } else { logger.warn("Vao object is null!"); }
     }

@@ -51,58 +51,66 @@ public class Game {
         float objectB = 0.7f;
 
         float[] vertex = {
-            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,
-            0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,
-           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,
+            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,  0, 0,
+            0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,  0, 1,
+           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,  1, 1,
 
-            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,
-           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,
-           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,
-
-
-            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,
-            0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,
-            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,
-
-            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,
-            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,
-            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,
+            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,  0, 0,
+           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,  1, 1,
+           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 0f, 1f,  1, 0,
 
 
-           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,
-           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,
-           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,
+            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,  0, 0,
+            0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,  0, 1,
+            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,  1, 1,
 
-           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,
-           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,
-           -0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,
-
-
-            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,
-            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,
-           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,
-
-            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,
-           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,
-           -0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,
+            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,  0, 0,
+            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,  1, 1,
+            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  1f, 0f, 0f,  1, 0,
 
 
-            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,
-           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,
-           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,
+           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,  0, 0,
+           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,  0, 1,
+           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,  1, 1,
 
-            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,
-            0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,
-           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,
+           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,  0, 0,
+           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,  1, 1,
+           -0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f, -1f, 0f, 0f,  1, 0,
 
 
-            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
-           -0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
-           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,  0, 0,
+            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,  0, 1,
+           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,  1, 1,
 
-            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
-            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
-           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,  0, 0,
+           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,  1, 1,
+           -0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 0f,-1f,  1, 0,
+
+
+            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,  0, 0,
+           -0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,  0, 1,
+           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,  1, 1,
+
+            0.4f,-0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,  0, 0,
+            0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,  1, 1,
+           -0.4f,-0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f,-1f, 0f,  1, 0,
+
+
+            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,  0, 0,
+           -0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,  0, 1,
+           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,  1, 1,
+
+            0.4f, 0.4f,-0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,  0, 0,
+            0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,  1, 1,
+           -0.4f, 0.4f, 0.4f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,  1, 0,
+
+//                0.6f, 0.6f,-0.6f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+//                0.6f, 0.6f, 0.6f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+//                -0.6f, 0.6f, 0.6f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+//
+//                0.6f, 0.6f,-0.6f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+//                -0.6f, 0.6f,-0.6f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
+//                -0.6f, 0.6f, 0.6f,  objectR, objectG, objectB, 1f,  0f, 1f, 0f,
         };
 
 //        float[] vertex = PoseReader.readPoseInFile("\\assets\\poses\\pose_0.obj");
@@ -115,7 +123,8 @@ public class Game {
         vertexBufferObject.setBufferLayout(new BufferLayout(
                 new VertexAttribute("attrib_position", ShaderDataType.t_float3),
                 new VertexAttribute("attrib_color", ShaderDataType.t_float4),
-                new VertexAttribute("attrib_normal", ShaderDataType.t_float3)
+                new VertexAttribute("attrib_normal", ShaderDataType.t_float3),
+                new VertexAttribute("attrib_uv", ShaderDataType.t_float2)
         ));
 
         vertexArrayObject.putBuffer(vertexBufferObject);
@@ -123,7 +132,8 @@ public class Game {
         GameObject gameObject = new GameObject(
                 new Vector3f(0, 0, 0), // Position
                 new Vector3f(0.3f, -0.3f, 0), // Rotation
-                new Vector3f(1, 1, 1)  // Scale
+                new Vector3f(1, 1, 1),  // Scale
+                "C:\\Users\\glebm\\OneDrive\\Рабочий стол\\Projects\\MathGame\\src\\main\\resources\\assets\\textures\\grass.png"
         );
 
         gameObject.setModel(vertexArrayObject);
@@ -141,6 +151,12 @@ public class Game {
             gameObject.getRotation().x += speed;
             gameObject.getRotation().y += speed;
             gameObject.getRotation().z += speed;
+
+            if (gameObject.getRotation().x == 1) {
+                gameObject.getRotation().x = -1;
+                gameObject.getRotation().y = -1;
+                gameObject.getRotation().z = -1;
+            }
 
             Render.begin(shader);
 

@@ -51,7 +51,23 @@ public class Texture {
 
         id = glCreateTextures(GL_TEXTURE_2D);
         glTextureStorage2D(id, 1, internalFormat, width, height);
+
+        glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+        glTextureSubImage2D(id, 0, 0, 0, width, height, format, GL_UNSIGNED_BYTE, image);
+
+        if (image != null) { stbi_image_free(image); }
+        else {
+            logger.error("Image is null!");
+            System.exit(-1);
+        }
     }
+
+    public void bind() { glBindTexture(GL_TEXTURE_2D, id); }
+    public void unBind() { glBindTexture(GL_TEXTURE_2D, 0); }
 
     public int getId() { return id; }
     public int getWidth() { return width; }
