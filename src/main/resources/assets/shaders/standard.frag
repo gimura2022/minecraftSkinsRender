@@ -33,19 +33,6 @@ vec4 get_color_diffuse_light_mode() {
     return (u_light_color * diff) * 1.45;
 }
 
-vec4 get_color_specular_light_mode() {
-    vec3 viewPos = vec3(0, 0, 0);
-    float specularStrength = 0.5f;
-
-    vec3 norm = normalize(normal);
-    vec3 viewDir = normalize(viewPos - fragPos);
-    vec3 reflectDir = reflect(-viewDir, norm);
-
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
-
-    return vec4(specularStrength * spec * u_light_color);
-}
-
 vec4 get_color_light_mode() {
     vec4 result = (get_color_ambient_light_mode() + get_color_diffuse_light_mode()) * color;
 
