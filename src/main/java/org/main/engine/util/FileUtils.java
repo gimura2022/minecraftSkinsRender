@@ -1,13 +1,44 @@
 package org.main.engine.util;
 
-import org.main.engine.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 
 public class FileUtils {
     private static final Logger logger = LoggerFactory.getLogger(FileUtils.class);
+
+//    public static ByteBuffer fileToByteBuffer(String file)
+//    {
+//        logger.debug("Reading file: " + file);
+//
+//        DataInputStream dataInputStream = null;
+//
+//        try {
+//            int byteCount = (int) file.length();
+//
+//            dataInputStream = new DataInputStream(getFileFromResourceAsStream(file));
+//            final byte[] bytes = new byte[byteCount];
+//            dataInputStream.readFully(bytes);
+//
+//            return ByteBuffer.wrap(bytes);
+//        } catch (IOException e) {
+//            logger.error("Unable to read file!");
+//            e.printStackTrace();
+//            System.exit(-1);
+//        } finally {
+//            try { dataInputStream.close(); }
+//            catch (IOException e) { System.exit(-1); } // Самовыпил программы если произошла это ультра сериёзная ошибка
+//        }
+//
+//        return null;
+//    }
 
     public static String readFile(String file) {
         logger.debug("Reading file: " + file);

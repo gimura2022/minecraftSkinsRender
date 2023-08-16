@@ -1,6 +1,7 @@
 package org.main.engine.render;
 
 import org.lwjgl.BufferUtils;
+import org.main.engine.util.FileUtils;
 import org.main.engine.util.ImageSaver;
 import org.main.engine.util.MemoryManagement;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class Texture {
         IntBuffer heightBuffer = BufferUtils.createIntBuffer(1);
         IntBuffer channelBuffer = BufferUtils.createIntBuffer(1);
 
-        image = stbi_load_from_memory(MemoryManagement.resourceToByteBuffer(path), widthBuffer, heightBuffer, channelBuffer, 0);
+//        image = stbi_load_from_memory(FileUtils.fileToByteBuffer(path), widthBuffer, heightBuffer, channelBuffer, 0);
 
         width = widthBuffer.get(0);
         height = heightBuffer.get(0);

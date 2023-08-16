@@ -133,7 +133,7 @@ public class Game {
                 new Vector3f(0, 0, 0), // Position
                 new Vector3f(0.3f, -0.3f, 0), // Rotation
                 new Vector3f(1, 1, 1),  // Scale
-                "C:\\Users\\glebm\\OneDrive\\Рабочий стол\\Projects\\MathGame\\src\\main\\resources\\assets\\textures\\grass.png"
+                "\\assets\\textures\\grass.png"
         );
 
         gameObject.setModel(vertexArrayObject);
@@ -152,11 +152,9 @@ public class Game {
             gameObject.getRotation().y += speed;
             gameObject.getRotation().z += speed;
 
-            if (gameObject.getRotation().x == 1) {
-                gameObject.getRotation().x = -1;
-                gameObject.getRotation().y = -1;
-                gameObject.getRotation().z = -1;
-            }
+            if (gameObject.getRotation().x == 1) { gameObject.getRotation().x = -1; }
+            if (gameObject.getRotation().y == 1) { gameObject.getRotation().y = -1; }
+            if (gameObject.getRotation().z == 1) { gameObject.getRotation().z = -1; }
 
             Render.begin(shader);
 
